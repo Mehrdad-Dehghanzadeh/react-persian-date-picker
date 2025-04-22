@@ -1,0 +1,5 @@
+@use '@styles/_abstracts' as abstracts;
+
+.persian-date-picker-months {
+  @extend %input-items;
+}
