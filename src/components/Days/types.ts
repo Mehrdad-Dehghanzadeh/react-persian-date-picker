@@ -1,3 +1,5 @@
+import type { TDate } from '@type/Date'
+
 export type Props = {
-  setValue: TSetState<string>
+  setDate: TSetState<TDate | null>
 }

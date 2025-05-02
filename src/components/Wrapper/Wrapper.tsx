@@ -1,16 +1,27 @@
 import type { Props } from './types'
+import type { TDate } from '@type/Date'
 import { Days, Months, Years } from '../index'
-import { useState } from 'react'
-
+import { useMemo, useState } from 'react'
+import jalaali from 'jalaali-js'
 import './style.scss'
 
 export const Wrapper: React.FC<Props> = () => {
-  const [value, setValue] = useState<string>('')
+  const [date, setDate] = useState<TDate | null>(null)
+
+  const value = useMemo<string>(() => {
+    let val = ''
+    if (date) {
+      const gregorian = jalaali.toGregorian(date.year, date.month, date.day)
+      val = `${gregorian.gy}-${gregorian.gm}-${gregorian.gd}T00:00:00Z`
+    }
+
+    return val
+  }, [date])
 
   return (
     <div className="persian-date-picker-wrapper">
       <div className="persian-date-picker-wrapper__inputs">
-        <Days setValue={setValue} />
+        <Days setDate={setDate} />
         <Months />
         <Years />
       </div>
