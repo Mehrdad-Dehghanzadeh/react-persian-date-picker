@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import './style.scss'
 
 export const Years: React.FC = () => {
   const years = useRef<number[]>(
@@ -8,7 +9,9 @@ export const Years: React.FC = () => {
   return (
     <div className="persian-date-picker-years">
       {years.current.map((el) => (
-        <span>{el}</span>
+        <span className="persian-date-picker-years__item" key={`years-${el}`}>
+          {el}
+        </span>
       ))}
     </div>
   )

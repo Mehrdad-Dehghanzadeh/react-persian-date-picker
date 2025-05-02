@@ -1,9 +1,9 @@
 @use '@styles/_abstracts' as abstracts;
 
-.persian-date-picker-years {
+.persian-date-picker-months {
   @extend %input;
 
   &__item {
-    @extend %input-item;
+  @extend %input-item;
   }
 }

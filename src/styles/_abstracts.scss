@@ -1,6 +1,13 @@
-%input-items {
+%input {
   height: 240px;
   overflow-y: auto;
   flex-basis: 33.3%;
   padding: 8px;
+}
+
+%input-item {
+  display: block;
+  cursor: pointer;
+  margin: 12px auto;
+  text-align: center;
 }

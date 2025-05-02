@@ -1,5 +1,9 @@
 @use '@styles/_abstracts' as abstracts;
 
 .persian-date-picker-days {
-  @extend %input-items;
+  @extend %input;
+
+  &__item {
+    @extend %input-item;
+  }
 }

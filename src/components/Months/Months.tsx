@@ -10,9 +10,9 @@ export const Months: React.FC<Props> = () => {
   return (
     <div className="persian-date-picker-months">
       {months.current.map((el) => (
-        <div className="persian-date-picker-months__item" key={el.number}>
+        <span className="persian-date-picker-months__item" key={`months-${el.number}`}>
           {el.name}
-        </div>
+        </span>
       ))}
     </div>
   )
