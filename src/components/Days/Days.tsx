@@ -5,7 +5,7 @@ import './style.scss'
 export const Days: React.FC<Props> = ({ setDate }) => {
   const days = useRef<number[]>(new Array(30).fill(null).map((_el, index) => index + 1))
   const setDay = (day: number) => {
-    setDate(() => ({ day, year: 1372, month: 12 }))
+    setDate((state) => ({ ...state, day }))
   }
 
   return (

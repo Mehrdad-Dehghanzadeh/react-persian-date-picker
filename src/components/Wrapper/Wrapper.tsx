@@ -10,7 +10,7 @@ export const Wrapper: React.FC<Props> = () => {
 
   const value = useMemo<string>(() => {
     let val = ''
-    if (date) {
+    if (date?.year && date?.month && date?.day) {
       const gregorian = jalaali.toGregorian(date.year, date.month, date.day)
       val = `${gregorian.gy}-${gregorian.gm}-${gregorian.gd}T00:00:00Z`
     }
@@ -22,8 +22,8 @@ export const Wrapper: React.FC<Props> = () => {
     <div className="persian-date-picker-wrapper">
       <div className="persian-date-picker-wrapper__inputs">
         <Days setDate={setDate} />
-        <Months />
-        <Years />
+        <Months setDate={setDate} />
+        <Years setDate={setDate} />
       </div>
 
       <div></div>
