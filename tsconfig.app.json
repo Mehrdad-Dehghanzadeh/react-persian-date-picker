@@ -29,7 +29,9 @@
       "@components": ["./src/components"],
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
-      "@type/*": ["./src/types/*"]
+      "@type/*": ["./src/types/*"],
+      "@contexts": ["./src/contexts"],
+      "@contexts/*": ["./src/contexts/*"]
     }
   },
   "include": ["src", "global.d.ts"]

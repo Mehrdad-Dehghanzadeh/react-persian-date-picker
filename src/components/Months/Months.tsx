@@ -1,14 +1,17 @@
 import type { TPersianMonth } from '@type/Month'
 import type { Props } from './types'
-import { useRef } from 'react'
+import type { TDate } from '@type/Date'
+import { DatePickerContext } from '@contexts/DatePicker'
+import { useRef, useContext } from 'react'
 import { persianMonths } from '@data/month'
 import './style.scss'
 
-export const Months: React.FC<Props> = ({ setDate }) => {
+export const Months: React.FC<Props> = ({}) => {
+  const { setDate } = useContext(DatePickerContext)
   const months = useRef<TPersianMonth>(persianMonths)
 
   const setMonth = (month: number) => {
-    setDate((state) => ({ ...state, month }))
+    setDate((prevState: TDate) => ({ ...prevState, month }))
   }
 
   return (

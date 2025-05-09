@@ -1,14 +1,18 @@
 import type { Props } from './types'
-import React, { useRef } from 'react'
+import type { TDate } from '@type/Date'
+import { useRef, useContext } from 'react'
+import { DatePickerContext } from '@contexts/DatePicker'
+
 import './style.scss'
 
-export const Years: React.FC<Props> = ({ setDate }) => {
+export const Years: React.FC<Props> = ({}) => {
+  const { setDate } = useContext(DatePickerContext)
   const years = useRef<number[]>(
     new Array(200).fill(null).map((_el, index) => index + 1250)
   )
 
   const setYear = (year: number) => {
-    setDate((state) => ({ ...state, year }))
+    setDate((prevState: TDate) => ({ ...prevState, year }))
   }
 
   return (
