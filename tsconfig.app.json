@@ -30,8 +30,11 @@
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
       "@type/*": ["./src/types/*"],
+      "@type": ["./src/types"],
       "@contexts": ["./src/contexts"],
-      "@contexts/*": ["./src/contexts/*"]
+      "@contexts/*": ["./src/contexts/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@hooks": ["./src/hooks"]
     }
   },
   "include": ["src", "global.d.ts"]

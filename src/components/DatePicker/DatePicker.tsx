@@ -1,6 +1,5 @@
-import type { TDate } from '@type/Date'
-import type { TValue } from '@type/Value'
-import { Days, Months, Years } from '../index'
+import type { TDate, TValue } from '@type/index'
+import { Days, Months, Years } from '@components'
 import { useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
