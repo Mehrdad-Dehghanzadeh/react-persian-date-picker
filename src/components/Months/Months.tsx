@@ -4,7 +4,7 @@ import type { TDate } from '@type/Date'
 import { DatePickerContext } from '@contexts/DatePicker'
 import { useRef, useContext } from 'react'
 import { persianMonths } from '@data/month'
-import './style.scss'
+import './Months.scss'
 
 export const Months: React.FC<Props> = ({}) => {
   const { setDate } = useContext(DatePickerContext)

@@ -2,7 +2,7 @@ import type { Props } from './types'
 import type { TDate } from '@type/Date'
 import { useRef, useContext } from 'react'
 import { DatePickerContext } from '@contexts/DatePicker'
-import './style.scss'
+import './Days.scss'
 
 export const Days: React.FC<Props> = ({}) => {
   const { setDate } = useContext(DatePickerContext)

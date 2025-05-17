@@ -1,6 +1,6 @@
 import type { Props } from './types'
 import { DatePicker } from '@components/DatePicker/DatePicker'
-import './style.scss'
+import './Wrapper.scss'
 
 export const Wrapper: React.FC<Props> = () => {
   return (

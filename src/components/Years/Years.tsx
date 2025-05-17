@@ -2,8 +2,7 @@ import type { Props } from './types'
 import type { TDate } from '@type/Date'
 import { useRef, useContext } from 'react'
 import { DatePickerContext } from '@contexts/DatePicker'
-
-import './style.scss'
+import './Years.scss'
 
 export const Years: React.FC<Props> = ({}) => {
   const { setDate } = useContext(DatePickerContext)
