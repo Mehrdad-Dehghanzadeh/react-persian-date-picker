@@ -7,7 +7,7 @@ import { persianMonths } from '@data/month'
 import './Months.scss'
 
 export const Months: React.FC<Props> = ({}) => {
-  const { setDate } = useContext(DatePickerContext)
+  const { date, setDate } = useContext(DatePickerContext)
   const months = useRef<TPersianMonth>(persianMonths)
 
   const setMonth = (month: number) => {
@@ -18,7 +18,7 @@ export const Months: React.FC<Props> = ({}) => {
     <div className="persian-date-picker-months">
       {months.current.map((month) => (
         <span
-          className="persian-date-picker-months__item"
+          className={`persian-date-picker-months__item${month.number === date.month ? ' persian-date-picker-months__item--selected' : ''}`}
           key={`months-${month.number}`}
           onClick={() => {
             setMonth(month.number)

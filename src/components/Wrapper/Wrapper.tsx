@@ -7,11 +7,6 @@ export const Wrapper: React.FC<Props> = () => {
     <div className="persian-date-picker-wrapper">
       <DatePicker />
 
-      <div className="persian-date-picker__btns">
-        <button type="button">تایید</button>
-        <button type="button">بستن</button>
-      </div>
-
       <div className=""></div>
     </div>
   )

@@ -1,13 +1,14 @@
+import type { TProps } from './TDatePicker'
 import type { TDate, TValue } from '@type/index'
 import { Days, Months, Years } from '@components'
 import { useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 
-export const DatePicker: React.FC = () => {
+export const DatePicker: React.FC<TProps> = ({ value, setValue }) => {
   const [date, setDate] = useState<TDate | null>(null)
 
-  const value = useMemo<TValue>(() => {
+  const val = useMemo<TValue>(() => {
     let val = {
       utc: '',
       jalaali: ''
@@ -18,7 +19,7 @@ export const DatePicker: React.FC = () => {
       val.utc = `${gregorian.gy}-${gregorian.gm}-${gregorian.gd}T00:00:00Z`
       val.jalaali = `${date?.year}/${date?.month}/${date?.day}`
     }
-
+    setValue?.(val.utc)
     return val
   }, [date])
 
@@ -31,6 +32,11 @@ export const DatePicker: React.FC = () => {
         <Months />
         <Years />
       </DatePickerContext.Provider>
+
+      <div className="persian-date-picker__btns">
+        <button type="button">تایید</button>
+        <button type="button">بستن</button>
+      </div>
     </div>
   )
 }
