@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 
-export const DatePicker: React.FC<TProps> = ({ value, setValue }) => {
+export const DatePicker: React.FC<TProps> = ({ onChange }) => {
   const [date, setDate] = useState<TDate | null>(null)
 
   const val = useMemo<TValue>(() => {
@@ -19,7 +19,8 @@ export const DatePicker: React.FC<TProps> = ({ value, setValue }) => {
       val.utc = `${gregorian.gy}-${gregorian.gm}-${gregorian.gd}T00:00:00Z`
       val.jalaali = `${date?.year}/${date?.month}/${date?.day}`
     }
-    setValue?.(val.utc)
+
+    onChange?.(val)
     return val
   }, [date])
 
