@@ -4,7 +4,7 @@ import { useRef, useContext } from 'react'
 import { DatePickerContext } from '@contexts/DatePicker'
 import './Years.scss'
 
-export const Years: React.FC<Props> = ({}) => {
+export const Years: React.FC<Props> = () => {
   const { setDate } = useContext(DatePickerContext)
   const years = useRef<number[]>(
     new Array(200).fill(null).map((_el, index) => index + 1250)

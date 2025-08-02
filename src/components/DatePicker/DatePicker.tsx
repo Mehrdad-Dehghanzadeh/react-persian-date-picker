@@ -1,15 +1,15 @@
 import type { TProps } from './TDatePicker'
 import type { TDate, TValue } from '@type/index'
 import { Days, Months, Years } from '@components'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 
 export const DatePicker: React.FC<TProps> = ({ onChange }) => {
   const [date, setDate] = useState<TDate | null>(null)
 
-  const val = useMemo<TValue>(() => {
-    let val = {
+  useEffect(() => {
+    let val: TValue = {
       utc: '',
       jalaali: ''
     }
@@ -21,7 +21,6 @@ export const DatePicker: React.FC<TProps> = ({ onChange }) => {
     }
 
     onChange?.(val)
-    return val
   }, [date])
 
   const DatePickerContextValue = useMemo(() => ({ date, setDate }), [date])
