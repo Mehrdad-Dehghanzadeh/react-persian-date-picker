@@ -4,9 +4,21 @@ import { Days, Months, Years } from '@components'
 import { useEffect, useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
+import './DatePicker.scss'
 
-export const DatePicker: React.FC<TProps> = ({ onChange }) => {
+export const DatePicker: React.FC<TProps> = ({ onChange, show, onClose }) => {
   const [date, setDate] = useState<TDate | null>(null)
+  const [initialdate, setInitialdate] = useState<TDate | null>(null)
+
+  const cancel = () => {
+    setDate(initialdate)
+    onClose()
+  }
+
+  const apply = () => {
+    setInitialdate(date)
+    onClose()
+  }
 
   useEffect(() => {
     let val: TValue = {
@@ -26,17 +38,26 @@ export const DatePicker: React.FC<TProps> = ({ onChange }) => {
   const DatePickerContextValue = useMemo(() => ({ date, setDate }), [date])
 
   return (
-    <div className="persian-date-picker-wrapper__inputs">
-      <DatePickerContext.Provider value={DatePickerContextValue}>
-        <Days />
-        <Months />
-        <Years />
-      </DatePickerContext.Provider>
+    show && (
+      <div className="persian-date-picker">
+        <div className="persian-date-picker__inputs">
+          <DatePickerContext.Provider value={DatePickerContextValue}>
+            <Days />
+            <Months />
+            <Years />
+          </DatePickerContext.Provider>
+        </div>
 
-      <div className="persian-date-picker__btns">
-        <button type="button">تایید</button>
-        <button type="button">بستن</button>
+        <div className="persian-date-picker__btns">
+          <button type="button" onClick={apply}>
+            تایید
+          </button>
+
+          <button type="button" onClick={cancel}>
+            بستن
+          </button>
+        </div>
       </div>
-    </div>
+    )
   )
 }
