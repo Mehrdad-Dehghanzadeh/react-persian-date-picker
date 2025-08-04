@@ -27,7 +27,7 @@ export const Wrapper: React.FC<Props> = () => {
         />
         <i>{value?.utc}</i>
       </div>
-      <DatePicker show={show} onClose={onClose} onChange={onChange} />
+      <DatePicker show={show} onClose={onClose} onChange={onChange} defaultValue={'1994-02-20'} />
     </div>
   )
 }

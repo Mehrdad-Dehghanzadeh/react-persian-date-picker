@@ -1,24 +1,56 @@
 import type { TProps } from './TDatePicker'
 import type { TDate, TValue } from '@type/index'
 import { Days, Months, Years } from '@components'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 import './DatePicker.scss'
 
-export const DatePicker: React.FC<TProps> = ({ onChange, show, onClose }) => {
+export const DatePicker: React.FC<TProps> = ({
+  onChange,
+  show,
+  onClose,
+  defaultValue
+}) => {
   const [date, setDate] = useState<TDate | null>(null)
-  const [initialdate, setInitialdate] = useState<TDate | null>(null)
+  const [initialDate, setInitialDate] = useState<TDate | null>(null)
+
+  const convertUTCToDate = (str: string) => {
+    let val: TDate | null = null
+    const substr = str.replace(/T.*/, str)
+
+    if (RegExp(/\d{4}-\d{2}-\d{2}/).test(substr)) {
+      const temp = substr.split('-')
+      const jalaaliDate = jalaali.toJalaali(+temp[0], +temp[1], +temp[2])
+      val = {
+        year: jalaaliDate.jy,
+        month: jalaaliDate.jm,
+        day: jalaaliDate.jd
+      }
+    } else {
+      console.error('UTC Format Is wrong')
+    }
+
+    return val
+  }
 
   const cancel = () => {
-    setDate(initialdate)
+    setDate(initialDate)
     onClose()
   }
 
   const apply = () => {
-    setInitialdate(date)
+    setInitialDate(date)
     onClose()
   }
+
+  useLayoutEffect(() => {
+    if (defaultValue) {
+      const date = convertUTCToDate(defaultValue)
+      setDate(date)
+      setInitialDate(date)
+    }
+  }, [])
 
   useEffect(() => {
     let val: TValue = {
@@ -31,7 +63,6 @@ export const DatePicker: React.FC<TProps> = ({ onChange, show, onClose }) => {
       val.utc = `${gregorian.gy}-${gregorian.gm}-${gregorian.gd}T00:00:00Z`
       val.jalaali = `${date?.year}/${date?.month}/${date?.day}`
     }
-
     onChange?.(val)
   }, [date])
 
