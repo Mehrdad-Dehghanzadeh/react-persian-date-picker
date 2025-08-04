@@ -1,7 +1,7 @@
 import type { TProps } from './TDatePicker'
 import type { TDate, TValue } from '@type/index'
 import { Days, Months, Years } from '@components'
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import {  useLayoutEffect, useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 import './DatePicker.scss'
@@ -34,25 +34,7 @@ export const DatePicker: React.FC<TProps> = ({
     return val
   }
 
-  const cancel = () => {
-    setDate(initialDate)
-    onClose()
-  }
-
-  const apply = () => {
-    setInitialDate(date)
-    onClose()
-  }
-
-  useLayoutEffect(() => {
-    if (defaultValue) {
-      const date = convertUTCToDate(defaultValue)
-      setDate(date)
-      setInitialDate(date)
-    }
-  }, [])
-
-  useEffect(() => {
+  const setValue = () => {
     let val: TValue = {
       utc: '',
       jalaali: ''
@@ -64,7 +46,26 @@ export const DatePicker: React.FC<TProps> = ({
       val.jalaali = `${date?.year}/${date?.month}/${date?.day}`
     }
     onChange?.(val)
-  }, [date])
+  }
+
+  const cancel = () => {
+    setDate(initialDate)
+    onClose()
+  }
+
+  const apply = () => {
+    setValue()
+    setInitialDate(date)
+    onClose()
+  }
+
+  useLayoutEffect(() => {
+    if (defaultValue) {
+      const date = convertUTCToDate(defaultValue)
+      setDate(date)
+      setInitialDate(date)
+    }
+  }, [])
 
   const DatePickerContextValue = useMemo(() => ({ date, setDate }), [date])
 
