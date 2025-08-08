@@ -1,11 +1,12 @@
-import React from 'react'
+import type { ComponentProps } from 'react'
 import type { TValue } from '@type/Value'
 
-type T = Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>
+type T = Omit<ComponentProps<'div'>, 'onChange'>
 
 export type TProps = T & {
-  onChange?: (value: TValue) => void
-  defaultValue?: string
   show: boolean
   onClose: (arg?: any) => any
+  onChange?: (value: TValue) => void
+  defaultValue?: string
+  maxWidth?: string
 }

@@ -2,12 +2,31 @@
   height: 240px;
   overflow-y: auto;
   flex-basis: 33.3%;
-  padding: 8px;
+  padding: 0 8px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 80px;
+  }
 }
 
 %input-item {
   display: block;
   cursor: pointer;
-  margin: 12px auto;
+  margin: auto;
+  padding: 12px 0;
   text-align: center;
+  opacity: 0.5;
+}
+
+%input-item--selected {
+  opacity: 1;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
 }

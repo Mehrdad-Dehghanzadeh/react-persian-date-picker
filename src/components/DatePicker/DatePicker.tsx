@@ -1,7 +1,7 @@
 import type { TProps } from './TDatePicker'
 import type { TDate, TValue } from '@type/index'
 import { Days, Months, Years } from '@components'
-import {  useLayoutEffect, useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import jalaali from 'jalaali-js'
 import { DatePickerContext } from '@contexts/DatePicker'
 import './DatePicker.scss'
@@ -10,7 +10,8 @@ export const DatePicker: React.FC<TProps> = ({
   onChange,
   show,
   onClose,
-  defaultValue
+  defaultValue,
+  ...props
 }) => {
   const [date, setDate] = useState<TDate | null>(null)
   const [initialDate, setInitialDate] = useState<TDate | null>(null)
@@ -71,7 +72,7 @@ export const DatePicker: React.FC<TProps> = ({
 
   return (
     show && (
-      <div className="persian-date-picker">
+      <div className="persian-date-picker" {...props}>
         <div className="persian-date-picker__inputs">
           <DatePickerContext.Provider value={DatePickerContextValue}>
             <Days />

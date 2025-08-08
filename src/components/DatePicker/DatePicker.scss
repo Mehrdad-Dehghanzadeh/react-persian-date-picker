@@ -1,7 +1,13 @@
 .persian-date-picker {
   position: relative;
+  max-width: 320px;
 
   &__inputs {
+    display: flex;
+  }
+
+  &__btns {
+    margin: 12px;
     display: flex;
   }
 }
