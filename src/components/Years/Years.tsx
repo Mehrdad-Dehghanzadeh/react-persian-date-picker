@@ -11,10 +11,10 @@ export const Years: React.FC<Props> = () => {
   const selectedId = `persian-date-picker-years__item--selected-${selfId}`
   const selectedClassName = 'persian-date-picker-years__item--selected'
 
-  const { wrapperEl, removeClassName } = useScroll(selectedId, selectedClassName)
+  const { wrapperEl } = useScroll(selectedId, selectedClassName)
 
   const years = useRef<number[]>(
-    new Array(200).fill(null).map((_el, index) => index + 1250)
+    new Array(200).fill(null).map((_el, index) => index + 1300)
   )
 
   const setYear = (year: number) => {
@@ -25,7 +25,7 @@ export const Years: React.FC<Props> = () => {
     <div className="persian-date-picker-years" ref={wrapperEl}>
       {years.current.map((year) => (
         <span
-          className={`persian-date-picker-years__item${year === date?.year ? ' ' + selectedClassName : ''}`}
+          className={`persian-date-picker-years__item`}
           key={`years-${selfId}-${year}`}
           id={year === date?.year ? selectedId : undefined}
           onClick={() => {

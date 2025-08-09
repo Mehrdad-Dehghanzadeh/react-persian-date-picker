@@ -6,7 +6,7 @@ export function useScroll(selectedId: string, selectedClassName: string) {
 
   const wrapperEl = useRef<HTMLDivElement>(null)
 
-  const scrollToSelected = () => {
+  const scrollToSelected = (behavior: ScrollBehavior = 'smooth') => {
     const el: HTMLDivElement | null = document.querySelector(`#${selectedId}`)
     const offsetTop: number = el?.offsetTop ?? 0
 
@@ -14,7 +14,7 @@ export function useScroll(selectedId: string, selectedClassName: string) {
       wrapperEl?.current?.scrollTo({
         left: 0,
         top: offsetTop - 100,
-        behavior: 'smooth'
+        behavior
       })
     }
   }
@@ -25,7 +25,6 @@ export function useScroll(selectedId: string, selectedClassName: string) {
 
   const addClassName = () => {
     document.getElementById(selectedId)?.classList.add(selectedClassName)
-
   }
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export function useScroll(selectedId: string, selectedClassName: string) {
   }, [date])
 
   useLayoutEffect(() => {
-    scrollToSelected()
+    scrollToSelected('auto')
   }, [])
 
   return {
